@@ -1,0 +1,88 @@
+<div class="to-do">
+  <h2>To Do</h2>
+  <form [formGroup]="toDoForm" (submit)="saveForm()">
+    <code [class.valid]="invalidForm()"
+      >This form is valid: {{ !invalidForm() }}</code
+    >
+    <table>
+      <tr>
+        <td>Title:</td>
+        <td>
+          <input
+            type="text"
+            placeholder="title"
+            size="30"
+            formControlName="title"
+          />
+        </td>
+        <td *ngIf="invalidFields('title')" class="valid">
+          Please enter valid <i>title</i>
+        </td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td>
+          <input
+            type="text"
+            placeholder="name"
+            size="30"
+            formControlName="name"
+          />
+        </td>
+        <td *ngIf="invalidFields('name')" class="valid">
+          Please enter valid <i>name</i>
+        </td>
+      </tr>
+      <tr>
+        <td><button type="submit" [disabled]="invalidForm()">Save</button></td>
+        <td><button type="button" (click)="addTask()">Add Task</button></td>
+      </tr>
+    </table>
+
+    <br />
+    <hr />
+
+    <table *ngIf="tasksArray.length > 0; else noTask">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Priority</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="tasks">
+        <tr
+          *ngFor="let t of tasksArray.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <td>
+            <input
+              type="text"
+              size="30"
+              placeholder="task"
+              formControlName="taskName"
+            />
+          </td>
+          <td>
+            <select formControlName="priority">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </td>
+          <td>
+            <input
+              type="date"
+              size="30"
+              placeholder="due date"
+              formControlName="dueDate"
+            />
+          </td>
+          <td><button type="button" (click)="removeTask(i)">x</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <ng-template #noTask> You don't have any task yet! </ng-template>
+</div>

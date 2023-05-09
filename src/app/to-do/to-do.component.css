@@ -1,0 +1,15 @@
+button {
+  margin: 10px;
+}
+
+.valid {
+  color: red;
+}
+
+code {
+  color: green;
+}
+
+.to-do {
+  margin-left: 200px;
+}

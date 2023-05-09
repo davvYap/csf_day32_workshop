@@ -1,0 +1,54 @@
+<div class="border">
+  <h3>Your tasks</h3>
+
+  <div *ngIf="!emptyData(); else noToDoObj">
+    <div>
+      <span><button type="button" (click)="saveToStorage()">Save</button></span>
+      <span
+        ><button type="button" (click)="clearAllStorage()">Clear</button></span
+      >
+    </div>
+    <div *ngFor="let d of dataArrayFromRoot; let i = index" class="items">
+      <p>
+        Title:
+        <span>
+          <b>{{ d.title }}</b>
+        </span>
+        <span> <button type="button" (click)="editToDo(i)">Edit</button> </span>
+        <span>
+          <button type="button" (click)="deleteToDo(i)">Delete</button>
+        </span>
+      </p>
+      <p>
+        Name:
+        <span>
+          <b>{{ d.name }}</b>
+        </span>
+      </p>
+      <div *ngFor="let t of d.tasks">
+        <p>
+          Tasks:
+          <span>
+            <b>{{ t.taskName }}</b>
+          </span>
+        </p>
+        <p>
+          Priority:
+          <span>
+            <b>{{ t.priority }}</b>
+          </span>
+        </p>
+        <p>
+          Due Date:
+          <span>
+            <b>{{ t.dueDate }}</b>
+          </span>
+        </p>
+      </div>
+
+      <hr />
+    </div>
+  </div>
+</div>
+
+<ng-template #noToDoObj> Nothing here... </ng-template>
