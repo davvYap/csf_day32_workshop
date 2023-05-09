@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -21,7 +21,8 @@ export class ToDoComponent implements OnInit {
   toDo!: ToDo;
 
   @Output()
-  toDoSubject = new Subject<string>();
+  //toDoSubject = new Subject<string>();
+  toDoSubject = new EventEmitter<string>();
 
   @Input()
   submittedDataToEdit!: ToDo;
@@ -82,7 +83,8 @@ export class ToDoComponent implements OnInit {
 
   saveForm(): void {
     const data = this.toDoForm.value;
-    this.toDoSubject.next(JSON.stringify(data));
+    //this.toDoSubject.next(JSON.stringify(data));
+    this.toDoSubject.emit(JSON.stringify(data));
     this.toDoForm = this.createNewForm();
   }
 }
