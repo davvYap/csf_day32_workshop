@@ -1,12 +1,11 @@
 <div class="to-do">
-  <h2>To Do</h2>
   <form [formGroup]="toDoForm" (submit)="saveForm()">
     <code [class.valid]="invalidForm()"
       >This form is valid: {{ !invalidForm() }}</code
     >
     <table>
       <tr>
-        <td>Title:</td>
+        <!-- <td>Title:</td>
         <td>
           <input
             type="text"
@@ -14,13 +13,24 @@
             size="30"
             formControlName="title"
           />
+        </td> -->
+        <td>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Title</mat-label>
+            <input
+              type="text"
+              placeholder="Title"
+              matInput
+              formControlName="title"
+            />
+          </mat-form-field>
         </td>
         <td *ngIf="invalidFields('title')" class="valid">
           Please enter valid <i>title</i>
         </td>
       </tr>
       <tr>
-        <td>Name:</td>
+        <!-- <td>Name:</td>
         <td>
           <input
             type="text"
@@ -28,14 +38,50 @@
             size="30"
             formControlName="name"
           />
+        </td> -->
+        <td>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Name</mat-label>
+            <input
+              type="text"
+              placeholder="Name"
+              matInput
+              formControlName="name"
+            />
+          </mat-form-field>
         </td>
         <td *ngIf="invalidFields('name')" class="valid">
           Please enter valid <i>name</i>
         </td>
       </tr>
       <tr>
-        <td><button type="submit" [disabled]="invalidForm()">Save</button></td>
-        <td><button type="button" (click)="addTask()">Add Task</button></td>
+        <!-- <td><button type="submit" [disabled]="invalidForm()">Save</button></td> -->
+        <!-- <td><button type="button" (click)="addTask()">Add Task</button></td> -->
+        <td>
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="addTask()"
+          >
+            <mat-icon fontIcon="add"></mat-icon>
+            Add Task
+          </button>
+        </td>
+        <td>
+          <ng-content></ng-content>
+        </td>
+        <td>
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            [disabled]="invalidForm()"
+          >
+            <mat-icon fontIcon="send"></mat-icon>
+            Save
+          </button>
+        </td>
       </tr>
     </table>
 

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ToDo } from './models';
+import { ToDoComponent } from './to-do/to-do.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,10 @@ export class AppComponent {
 
   datas: ToDo[] = [];
 
-  dataToEdit!: ToDo;
+  dataToEdit: ToDo | null = null;
+
+  @ViewChild(ToDoComponent)
+  todoComponent!: ToDoComponent;
 
   onSubmitToDo(data: string) {
     this.datas.push(JSON.parse(data) as ToDo);
@@ -20,5 +24,9 @@ export class AppComponent {
   dataToBeEdited(data: ToDo) {
     console.log('Data received in root >>>>>>', data.name);
     this.dataToEdit = data;
+  }
+
+  clear(): void {
+    this.todoComponent.value = null;
   }
 }

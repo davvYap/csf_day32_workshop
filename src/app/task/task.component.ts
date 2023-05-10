@@ -44,7 +44,10 @@ export class TaskComponent implements OnInit {
 
   editToDo(i: number): void {
     this.dataToEdit.next(this.dataArrayFromRoot[i]);
-    console.log('Data to edit >>>>>>', this.dataArrayFromRoot[i]);
+    console.log(
+      'Data to edit from Tasks Component>>>>>> ',
+      this.dataArrayFromRoot[i]
+    );
   }
 
   deleteToDo(i: number): void {

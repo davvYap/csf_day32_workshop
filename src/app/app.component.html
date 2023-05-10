@@ -1,8 +1,20 @@
+<mat-toolbar color="primary">
+  <button type="button" mat-icon-button color="basic">
+    <mat-icon fontIcon="menu"></mat-icon>
+  </button>
+  To Do Task
+</mat-toolbar>
+<br />
 <div class="flex">
   <app-to-do
     (toDoSubject)="onSubmitToDo($event)"
     [submittedDataToEdit]="dataToEdit"
-  ></app-to-do>
+  >
+    <button mat-raised-button color="warn" type="button" (click)="clear()">
+      <mat-icon fontIcon="delete"></mat-icon>
+      Clear
+    </button>
+  </app-to-do>
   <app-task
     [dataArrayFromRoot]="datas"
     (dataToEdit)="dataToBeEdited($event)"
