@@ -16,6 +16,14 @@ export class TaskComponent implements OnInit {
   @Output()
   dataToEdit = new Subject<ToDo>();
 
+  get value(): ToDo {
+    return this.toDoData;
+  }
+
+  set value(data: ToDo) {
+    this.dataToEdit.next(data);
+  }
+
   // retrieve from local storage
   ngOnInit(): void {
     let length: number = localStorage.length;

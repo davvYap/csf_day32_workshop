@@ -1,6 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ToDo } from './models';
 import { ToDoComponent } from './to-do/to-do.component';
+import { TaskComponent } from './task/task.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,9 @@ export class AppComponent {
   @ViewChild(ToDoComponent)
   todoComponent!: ToDoComponent;
 
+  @ViewChild(TaskComponent)
+  taskComponent!: TaskComponent;
+
   onSubmitToDo(data: string) {
     this.datas.push(JSON.parse(data) as ToDo);
   }
@@ -28,5 +33,6 @@ export class AppComponent {
 
   clear(): void {
     this.todoComponent.value = null;
+    this.taskComponent.value = { title: '', name: '', tasks: [] };
   }
 }
